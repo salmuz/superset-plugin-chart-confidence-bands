@@ -35,7 +35,8 @@ export default class SupersetPluginChartConfidenceBands extends ChartPlugin {
    */
   constructor() {
     const metadata = new ChartMetadata({
-      description: 'Superset Plugin Chart to display confidence bands of a regression prediction',
+      description:
+        'Superset Plugin Chart to display confidence bands of a regression prediction',
       name: t('Confidence Bands (Uncertainty)'),
       thumbnail,
     });

@@ -1,5 +1,5 @@
 {
-  "name": "superset-plugin-chart-confidence-bands",
+  "name": "@superset-ui/plugin-echarts-confidence-bands",
   "version": "0.1.0",
   "description": "Superset Plugin Chart to display confidence bands of a regression prediction",
   "sideEffects": false,
@@ -10,25 +10,24 @@
     "lib"
   ],
   "private": true,
-  "scripts": {
-    "build": "npm run build-cjs && npm run build-esm && npm run ts-types",
-    "build-cjs": "babel src --extensions \".ts,.tsx,.js,.jsx\" --copy-files --out-dir lib",
-    "build-clean": "npm run clean && npm run build",
-    "build-esm": "BABEL_OUTPUT=esm babel src --extensions \".ts,.tsx,.js,.jsx\" --copy-files --out-dir esm",
-    "dev": "BABEL_OUTPUT=esm babel src --extensions \".ts,.tsx,.js,.jsx\" --watch --copy-files --out-dir esm",
-    "prebuild": "rimraf {lib,esm,tsconfig.tsbuildinfo}",
-    "postbuild": "npm run test",
-    "ts-types": "tsc --build",
-    "test": "jest"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/salmuz/superset-plugin-chart-confidence-bands",
+    "directory": "superset-frontend/plugins/superset-plugin-chart-confidence-bands"
   },
-  "author": "My Name",
+  "author": "Yonatan Carlos CARRANZA ALARCON",
   "license": "Apache-2.0",
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {},
+  "homepage": "https://github.com/salmuz/superset-plugin-chart-confidence-bands#readme",
+  "dependencies": {
+    "d3-array": "^1.2.0",
+    "echarts": "^5.4.1",
+    "lodash": "^4.17.15",
+    "moment": "^2.26.0"
+  },
   "peerDependencies": {
-    "@airbnb/config-babel": "^2.0.1",
     "@superset-ui/chart-controls": "*",
     "@superset-ui/core": "*",
     "react": "^16.13.1"

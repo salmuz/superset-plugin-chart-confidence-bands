@@ -17,28 +17,26 @@
  * under the License.
  */
 import {
+  ChartDataResponseResult,
+  ChartProps,
   QueryFormData,
-  supersetTheme,
-  TimeseriesDataRecord,
 } from '@superset-ui/core';
 
-export interface SupersetPluginChartConfidenceBandsStylesProps {
-  height: number;
-  width: number;
-  headerFontSize: keyof typeof supersetTheme.typography.sizes;
-  boldText: boolean;
+import {
+  BaseTransformedProps,
+  ContextMenuTransformedProps,
+  CrossFilterTransformedProps,
+} from '@superset-ui/plugin-chart-echarts';
+
+export type EchartsUncertaintyFormData = QueryFormData;
+
+export interface SupersetPluginChartConfidenceBandsQueryFormData
+  extends ChartProps<EchartsUncertaintyFormData> {
+  formData: EchartsUncertaintyFormData;
+  queriesData: ChartDataResponseResult[];
 }
 
-interface SupersetPluginChartConfidenceBandsCustomizeProps {
-  headerText: string;
-}
-
-export type SupersetPluginChartConfidenceBandsQueryFormData = QueryFormData &
-  SupersetPluginChartConfidenceBandsStylesProps &
-  SupersetPluginChartConfidenceBandsCustomizeProps;
-
-export type SupersetPluginChartConfidenceBandsProps = SupersetPluginChartConfidenceBandsStylesProps &
-  SupersetPluginChartConfidenceBandsCustomizeProps & {
-    data: TimeseriesDataRecord[];
-    // add typing here for the props you pass in from transformProps.ts!
-  };
+export type SupersetPluginChartConfidenceBandsProps =
+  BaseTransformedProps<EchartsUncertaintyFormData> &
+    ContextMenuTransformedProps &
+    CrossFilterTransformedProps;
