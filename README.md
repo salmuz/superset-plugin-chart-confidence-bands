@@ -1,51 +1,19 @@
 # superset-plugin-chart-confidence-bands
 
-This is the Superset Plugin Chart to display confidence bands of a regression prediction Superset Chart Plugin.
+This is the Superset Plugin Chart to display confidence bands of a 
+regression prediction problem.
 
-### Usage
+## Usage
 
-To build the plugin, run the following commands:
+To use the plugin, it needs to clone/copy the folder in `superset-frontend/plugins` 
+folder of your Superset installation. After that, you need to do some modifications
 
-```
-npm ci
-npm run build
-```
 
-Alternatively, to run the plugin in development mode (=rebuilding whenever changes are made), start the dev server with the following command:
 
-```
-npm run dev
-```
+*We're working hard to finish the development of this readme*
 
-To add the package to Superset, go to the `superset-frontend` subdirectory in your Superset source folder (assuming both the `superset-plugin-chart-confidence-bands` plugin and `superset` repos are in the same root directory) and run
-```
-npm i -S ../../superset-plugin-chart-confidence-bands
-```
 
-If your Superset plugin exists in the `superset-frontend` directory and you wish to resolve TypeScript errors about `@superset-ui/core` not being resolved correctly, add the following to your `tsconfig.json` file:
-
-```
-"references": [
-  {
-    "path": "../../packages/superset-ui-chart-controls"
-  },
-  {
-    "path": "../../packages/superset-ui-core"
-  }
-]
-```
-
-You may also wish to add the following to the `include` array in `tsconfig.json` to make Superset types available to your plugin:
-
-```
-"../../types/**/*"
-```
-
-Finally, if you wish to ensure your plugin `tsconfig.json` is aligned with the root Superset project, you may add the following to your `tsconfig.json` file:
-
-```
-"extends": "../../tsconfig.json",
-```
+## Integration with Superset Project
 
 After this edit the `superset-frontend/src/visualizations/presets/MainPreset.js` and make the following changes:
 

@@ -17,21 +17,29 @@
  * under the License.
  */
 import React from 'react';
-import { Echart } from '@superset-ui/plugin-chart-echarts';
+import { Echart, EventHandlers } from '@superset-ui/plugin-chart-echarts';
 import { SupersetPluginChartConfidenceBandsProps } from './types';
-
-/**
- * ******************* WHAT YOU CAN BUILD HERE *******************
- *  In essence, a chart is given a few key ingredients to work with:
- *  * Data: provided via `props.data`
- *  * A DOM element
- *  * FormData (your controls!) provided as props by transformProps.ts
- */
 
 export default function SupersetPluginChartConfidenceBands(
   props: SupersetPluginChartConfidenceBandsProps,
 ) {
-  const { height, width, echartOptions, selectedValues, refs } = props;
+  const {
+    height,
+    width,
+    echartOptions,
+    selectedValues,
+    onFocusedSeries,
+    refs,
+  } = props;
+
+  const eventHandlers: EventHandlers = {
+    mouseout: () => {
+      onFocusedSeries(null);
+    },
+    mouseover: params => {
+      onFocusedSeries(params.seriesName);
+    },
+  };
 
   return (
     <Echart
@@ -39,6 +47,7 @@ export default function SupersetPluginChartConfidenceBands(
       height={height}
       width={width}
       echartOptions={echartOptions}
+      eventHandlers={eventHandlers}
       selectedValues={selectedValues}
     />
   );

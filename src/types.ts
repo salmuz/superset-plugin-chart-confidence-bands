@@ -39,4 +39,6 @@ export interface SupersetPluginChartConfidenceBandsQueryFormData
 export type SupersetPluginChartConfidenceBandsProps =
   BaseTransformedProps<EchartsUncertaintyFormData> &
     ContextMenuTransformedProps &
-    CrossFilterTransformedProps;
+    CrossFilterTransformedProps & {
+      onFocusedSeries: (series: string | null) => void;
+    };

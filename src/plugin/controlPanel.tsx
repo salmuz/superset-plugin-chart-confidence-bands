@@ -49,9 +49,9 @@
  * control types (can be set via the `type` property) that can be used. Some
  * commonly used examples:
  * - SelectControl: Dropdown to select single or multiple values,
-     usually columns
+ usually columns
  * - MetricsControl: Dropdown to select metrics, triggering a modal
-     to define Metric details
+ to define Metric details
  * - AdhocFilterControl: Control to choose filters
  * - CheckboxControl: A checkbox for choosing true/false values
  * - SliderControl: A slider with min/max values
@@ -81,7 +81,6 @@ import {
 import React from 'react';
 import {
   legendSection,
-  richTooltipSection,
   showValueControl,
   TimeseriesDefaultFormData as DEFAULT_FORM_DATA,
 } from '@superset-ui/plugin-chart-echarts';
@@ -95,6 +94,20 @@ function createControlQueryBand(bandSuffix: string): ControlSetRow {
         label: `Band Confidence L${bandSuffix}`,
         validators: [],
         description: `Lower and Upper bounds for the confidence band L${bandSuffix}`,
+      },
+    },
+  ];
+}
+
+function createLegendBand(bandSuffix: string): ControlSetRow {
+  return [
+    {
+      name: `legend_band_confidence_l${bandSuffix}`,
+      config: {
+        type: 'TextControl',
+        label: `Band Confidence L${bandSuffix}`,
+        renderTrigger: true,
+        description: t('Change the legend default to a custom value.'),
       },
     },
   ];
@@ -186,7 +199,25 @@ const config: ControlPanelConfig = {
           },
         ],
         ...legendSection,
-        ...richTooltipSection,
+        createLegendBand('1'),
+        createLegendBand('2'),
+        createLegendBand('3'),
+        createLegendBand('4'),
+        [<ControlSubSectionHeader>{t('Tooltip')}</ControlSubSectionHeader>],
+        [
+          {
+            name: 'rich_tooltip',
+            config: {
+              type: 'CheckboxControl',
+              label: t('Rich tooltip'),
+              renderTrigger: true,
+              default: true,
+              description: t(
+                'Shows a list of all series available into the confidence bands.',
+              ),
+            },
+          },
+        ],
       ],
     },
   ],

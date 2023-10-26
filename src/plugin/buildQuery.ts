@@ -41,7 +41,11 @@ export default function buildQuery(formData: QueryFormData) {
   return buildQueryContext(formData, baseQueryObject => [
     {
       ...baseQueryObject,
-      metrics: [...(baseQueryObject.metrics || []), ...extra_metrics],
+      metrics: [
+        formData?.y_prediction_hat, // add prediction metric
+        ...(baseQueryObject.metrics || []),
+        ...extra_metrics,
+      ],
       columns,
       series_columns: groupby,
       ...(isXAxisSet(formData) ? {} : { is_timeseries: true }),
